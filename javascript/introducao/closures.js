@@ -54,6 +54,35 @@ let olaResult = ola();
 
 olaResult();
 
+function saudacoesFactory(saudacao, nome) {
+  return function () {
+    console.log (saudacao + ', ' + nome);
+  }
+}
+
+let olaJoao = saudacoesFactory ('Olá', 'João');
+let tchauJoao = saudacoesFactory('Tchau', 'João');
+olaJoao();  //Olá, Jõao
+tchauJoao(); //Tchau, João
+
 //uma função interna em conjunto com as variaveis de seu escopo externo é o que chamamos de closure.
 
 //Caso de closure que pode ser contra intuitivo
+
+function eAgora () {
+  let cont = 1;
+  function f1 () {
+    console.log (cont);
+  }
+  cont++;
+  function f2 () {
+    console.log (cont);
+  }
+  //JSON contendo as duas funções
+  return {f1, f2}
+}
+
+let eAgoraResult = eAgora();
+
+eAgoraResult.f1(); //2
+eAgoraResult.f2(); //2
